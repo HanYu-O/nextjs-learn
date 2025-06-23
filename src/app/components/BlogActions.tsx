@@ -27,6 +27,7 @@ export default function BlogActions({ blogId, title }: BlogActionsProps) {
         });
       } catch (error) {
         console.log("分享取消或失败");
+        console.error(error);
       }
     } else {
       // 回退方案：复制链接

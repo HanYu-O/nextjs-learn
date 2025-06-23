@@ -38,7 +38,11 @@ export async function getAllBlogs(): Promise<BlogsResponse> {
 
 // 根据 slug 获取单个博客详情
 // 添加简单的内存缓存
-const cache = new Map<string, any>();
+type CacheItem = {
+  data: BlogResponse;
+  timestamp: number;
+}
+const cache = new Map<string, CacheItem>();
 const CACHE_TTL = 5 * 60 * 1000; // 5分钟
 export async function getBlogBySlug(slug: string): Promise<BlogResponse> {
   const cacheKey = `blog:${slug}`;
